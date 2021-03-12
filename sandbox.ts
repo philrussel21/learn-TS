@@ -58,41 +58,48 @@ console.log(char);
 // even before initialization.
 
 // Initializing a variable to only allow certain type
-let character: string;
-let pow: number;
-let isStrong: boolean;
+// let character: string;
+// let pow: number;
+// let isStrong: boolean;
 
 // EXPLICIT TYPES - ARRAYS
 
 // Initializes an empty array to only allow strings so you can push to it later on.
-const allies: string[] = [];
-const powers: number[] = [];
+// const allies: string[] = [];
+// const powers: number[] = [];
 
 // EXPLICIT TYPES - OBJECTS
-let ninja: object; // WARNING: since an Array is classified as an object, TS would still let you reassign it to an array
+// let ninja: object; // WARNING: since an Array is classified as an object, TS would still let you reassign it to an array
 
 // Another way, more strict way.
-let ninja2: {
-	name: string;
-	age: number;
-	isBlackBelt: boolean;
-};
+// let ninja2: {
+// 	name: string;
+// 	age: number;
+// 	isBlackBelt: boolean;
+// };
 
-ninja2 = { name: 'Ken', age: 45, isBlackBelt: true };
+// ninja2 = { name: 'Ken', age: 45, isBlackBelt: true };
 
 // UNION TYPES
 
 // UNION TYPES - VARS - more than one type for the variable
-let id: string | number;
-id = '32';
-console.log('id', id);
-id = 32;
-console.log('id', id);
+// let id: string | number;
+// id = '32';
+// console.log('id', id);
+// id = 32;
+// console.log('id', id);
 
-// UNION TYPES - ARRAYS - more than one type in the array
+// // UNION TYPES - ARRAYS - more than one type in the array
 
-const mixed: (string | number)[] = [];
-mixed.push('hello');
-mixed.push(30);
-// mixed.push(false); // Invalid since it was not part when initialized
-console.log(mixed);
+// const mixed: (string | number)[] = [];
+// mixed.push('hello');
+// mixed.push(30);
+// // mixed.push(false); // Invalid since it was not part when initialized
+// console.log(mixed);
+
+// DYNAMIC TYPE
+// negates the essence of TS by allowing ANY type of data to be stored in the variable
+let someVar: any;
+someVar = 'name';
+someVar = 5;
+someVar = true;
