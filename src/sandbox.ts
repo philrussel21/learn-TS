@@ -145,13 +145,29 @@ console.log(char);
 
 // TYPE ALIASES
 // - creates a placeholder type to have a more organized, DRYer code?
-type StringorNum = string | number;
-type ObjWithName = { name: string; uid: StringorNum };
+// type StringorNum = string | number;
+// type ObjWithName = { name: string; uid: StringorNum };
 
-let logDetails = (uid: StringorNum, item: string) => {
-	console.log(`${item} has an id of ${uid}`);
+// let logDetails = (uid: StringorNum, item: string) => {
+// 	console.log(`${item} has an id of ${uid}`);
+// };
+
+// let greet = (user: ObjWithName) => {
+// 	console.log(`${user.name} says hello.`);
+// };
+
+// FUNCTION SIGNATURES
+
+// Same like let greet: Function; but with more requirements,
+// this translates to "the function greet must accept these kinds of params and must return void."
+let greet: (param1: string, param2: string) => void;
+
+greet = (name: string, greeting: string) => {
+	console.log(`${name} says ${greeting}!`);
 };
 
-let greet = (user: ObjWithName) => {
-	console.log(`${user.name} says hello.`);
-};
+// this translates to "the function calc must accept two num params and must return a number"
+let calc: (param: number, anotherParam: number, action: string) => number;
+
+// translates to "the function logDetails must accept an object with the following fields and must return void."
+let logDetails: (p1: { name: string; age: number }) => void;
