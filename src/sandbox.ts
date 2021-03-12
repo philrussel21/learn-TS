@@ -107,38 +107,51 @@ console.log(char);
 // FUNCTIONS
 
 // Can also be set explicitly
-let greet: Function;
-greet = () => {
-	console.log('Hello!');
-};
+// let greet: Function;
+// greet = () => {
+// 	console.log('Hello!');
+// };
 // or implicitly
-let greetAgain = () => {
-	console.log('Hello, Again!');
-};
+// let greetAgain = () => {
+// 	console.log('Hello, Again!');
+// };
 
 // Function Parameters
 
 // Since this function does not return anything, it returns void (which is different from undefined)
-let add = (a: number, b: number, c: number | string = 0) => {
-	// C is an optional argument that has a default value. The other way around is: c?:number|string which would have a default
-	// value of undefined.
-	console.log(a + b);
-	console.log(c);
-};
+// let add = (a: number, b: number, c: number | string = 0) => {
+// 	// C is an optional argument that has a default value. The other way around is: c?:number|string which would have a default
+// 	// value of undefined.
+// 	console.log(a + b);
+// 	console.log(c);
+// };
 
 // Infer from the returned type
-let addNums = (a: number, b: number) => {
-	return a + b;
-};
+// let addNums = (a: number, b: number) => {
+// 	return a + b;
+// };
 
 // Variable sum would have the type of whatever the returned value was from a function - Infer type
-let sum = addNums(5, 10);
+// let sum = addNums(5, 10);
 // sum = 'hey'; // Invalid
 
 // Explicitly stating the return type of the function
-let minus = (a: number, b: number): number => {
-	return a - b;
+// let minus = (a: number, b: number): number => {
+// 	return a - b;
+// };
+
+// let difference = minus(10, 5);
+// difference = 'yolo' // Invalid
+
+// TYPE ALIASES
+// - creates a placeholder type to have a more organized, DRYer code?
+type StringorNum = string | number;
+type ObjWithName = { name: string; uid: StringorNum };
+
+let logDetails = (uid: StringorNum, item: string) => {
+	console.log(`${item} has an id of ${uid}`);
 };
 
-let difference = minus(10, 5);
-// difference = 'yolo' // Invalid
+let greet = (user: ObjWithName) => {
+	console.log(`${user.name} says hello.`);
+};
