@@ -169,5 +169,21 @@ greet = (name: string, greeting: string) => {
 // this translates to "the function calc must accept two num params and must return a number"
 let calc: (param: number, anotherParam: number, action: string) => number;
 
+calc = (num1: number, num2: number, op: string) => {
+	return op === 'add' ? num1 + num2 : num1 - num2;
+};
+
 // translates to "the function logDetails must accept an object with the following fields and must return void."
 let logDetails: (p1: { name: string; age: number }) => void;
+
+logDetails = (user: { name: string; age: number }) => {
+	console.log(`${user.name} is ${user.age} years old.`);
+};
+
+// OR WITH TYPE ALIASES
+type person = { name: string; age: number };
+let log2Details: (p1: person) => void;
+
+log2Details = (user: person) => {
+	console.log(`${user.name} is ${user.age} years old.`);
+};
