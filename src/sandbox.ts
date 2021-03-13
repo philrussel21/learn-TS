@@ -160,30 +160,69 @@ console.log(char);
 
 // Same like let greet: Function; but with more requirements,
 // this translates to "the function greet must accept these kinds of params and must return void."
-let greet: (param1: string, param2: string) => void;
+// let greet: (param1: string, param2: string) => void;
 
-greet = (name: string, greeting: string) => {
-	console.log(`${name} says ${greeting}!`);
-};
+// greet = (name: string, greeting: string) => {
+// 	console.log(`${name} says ${greeting}!`);
+// };
 
 // this translates to "the function calc must accept two num params and must return a number"
-let calc: (param: number, anotherParam: number, action: string) => number;
+// let calc: (param: number, anotherParam: number, action: string) => number;
 
-calc = (num1: number, num2: number, op: string) => {
-	return op === 'add' ? num1 + num2 : num1 - num2;
-};
+// calc = (num1: number, num2: number, op: string) => {
+// 	return op === 'add' ? num1 + num2 : num1 - num2;
+// };
 
 // translates to "the function logDetails must accept an object with the following fields and must return void."
-let logDetails: (p1: { name: string; age: number }) => void;
+// let logDetails: (p1: { name: string; age: number }) => void;
 
-logDetails = (user: { name: string; age: number }) => {
-	console.log(`${user.name} is ${user.age} years old.`);
-};
+// logDetails = (user: { name: string; age: number }) => {
+// 	console.log(`${user.name} is ${user.age} years old.`);
+// };
 
 // OR WITH TYPE ALIASES
-type person = { name: string; age: number };
-let log2Details: (p1: person) => void;
+// type person = { name: string; age: number };
+// let log2Details: (p1: person) => void;
 
-log2Details = (user: person) => {
-	console.log(`${user.name} is ${user.age} years old.`);
-};
+// log2Details = (user: person) => {
+// 	console.log(`${user.name} is ${user.age} years old.`);
+// };
+
+// The DOM
+
+// If you, as a dev, knows that the element you're trying to target is not gonna be null,
+// put a bang at the end to let TS know that it won't be null and should stop worrying.
+const anchor = document.querySelector('a')!;
+
+// Alternatively, you can also wrap in if statement if you don't wanna use the !, like so:
+if (anchor) {
+	console.log(anchor.href);
+}
+
+// Also, if you hover over the variable, TS would know what kind it is and assign a special type
+// that comes with different properties and methods that you can use.
+
+// const form = document.querySelector('form')!;
+
+// TYPE CASTING
+
+// When you have more than one form, you'll probably have to target them by class or id, in this case,
+// TS won't know what kind of HTMLELEMENT it would be so you have to tell it via type casting, like so:
+const form = document.querySelector('.new-item-form') as HTMLFormElement;
+
+// After successful type casting, the variable would then be of that certain HTMLELEMENT type and
+// its properties and methods would then be available.
+
+console.log(form.children);
+
+// More typecasting
+
+const type = document.querySelector('#type') as HTMLSelectElement;
+const tofrom = document.querySelector('#tofrom') as HTMLInputElement;
+const details = document.querySelector('#details') as HTMLInputElement;
+const amount = document.querySelector('#amount') as HTMLInputElement;
+
+form.addEventListener('submit', (e: Event) => {
+	e.preventDefault();
+	console.log(type.value, tofrom.value, details.value, amount.valueAsNumber);
+});

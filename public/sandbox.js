@@ -126,21 +126,50 @@ console.log(char);
 // FUNCTION SIGNATURES
 // Same like let greet: Function; but with more requirements,
 // this translates to "the function greet must accept these kinds of params and must return void."
-var greet;
-greet = function (name, greeting) {
-    console.log(name + " says " + greeting + "!");
-};
+// let greet: (param1: string, param2: string) => void;
+// greet = (name: string, greeting: string) => {
+// 	console.log(`${name} says ${greeting}!`);
+// };
 // this translates to "the function calc must accept two num params and must return a number"
-var calc;
-calc = function (num1, num2, op) {
-    return op === 'add' ? num1 + num2 : num1 - num2;
-};
+// let calc: (param: number, anotherParam: number, action: string) => number;
+// calc = (num1: number, num2: number, op: string) => {
+// 	return op === 'add' ? num1 + num2 : num1 - num2;
+// };
 // translates to "the function logDetails must accept an object with the following fields and must return void."
-var logDetails;
-logDetails = function (user) {
-    console.log(user.name + " is " + user.age + " years old.");
-};
-var log2Details;
-log2Details = function (user) {
-    console.log(user.name + " is " + user.age + " years old.");
-};
+// let logDetails: (p1: { name: string; age: number }) => void;
+// logDetails = (user: { name: string; age: number }) => {
+// 	console.log(`${user.name} is ${user.age} years old.`);
+// };
+// OR WITH TYPE ALIASES
+// type person = { name: string; age: number };
+// let log2Details: (p1: person) => void;
+// log2Details = (user: person) => {
+// 	console.log(`${user.name} is ${user.age} years old.`);
+// };
+// The DOM
+// If you, as a dev, knows that the element you're trying to target is not gonna be null,
+// put a bang at the end to let TS know that it won't be null and should stop worrying.
+var anchor = document.querySelector('a');
+// Alternatively, you can also wrap in if statement if you don't wanna use the !, like so:
+if (anchor) {
+    console.log(anchor.href);
+}
+// Also, if you hover over the variable, TS would know what kind it is and assign a special type
+// that comes with different properties and methods that you can use.
+// const form = document.querySelector('form')!;
+// TYPE CASTING
+// When you have more than one form, you'll probably have to target them by class or id, in this case,
+// TS won't know what kind of HTMLELEMENT it would be so you have to tell it via type casting, like so:
+var form = document.querySelector('.new-item-form');
+// After successful type casting, the variable would then be of that certain HTMLELEMENT type and
+// its properties and methods would then be available.
+console.log(form.children);
+// More typecasting
+var type = document.querySelector('#type');
+var tofrom = document.querySelector('#tofrom');
+var details = document.querySelector('#details');
+var amount = document.querySelector('#amount');
+form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    console.log(type.value, tofrom.value, details.value, amount.valueAsNumber);
+});
