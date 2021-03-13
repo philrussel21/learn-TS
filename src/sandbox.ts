@@ -277,3 +277,50 @@ form.addEventListener('submit', (e: Event) => {
 	e.preventDefault();
 	console.log(type.value, tofrom.value, details.value, amount.valueAsNumber);
 });
+
+// INTERFACES
+// - Enforces the certain structure for objects and classes. May look like creating a new Class but is not
+// the same since it will not create a new object (instance) but will also act like a blueprint when a
+// variable declares itself as the interface's type.
+interface isPerson {
+	name: string;
+	age: number;
+	speak(param: string): void; // Method should return void
+	spend(param: number): number; // Method should return number
+}
+
+// Acts like a blueprint for the isPerson type variable.
+// Doesn't have to explicitly say that it is a isPerson, just have to match.
+const me = {
+	name: 'Pilyo',
+	age: 25,
+	speak(msg: string) {
+		console.log(msg);
+	},
+	spend(amount: number) {
+		console.log(`I just spent $${amount}.`);
+		return amount;
+	},
+};
+
+// Saying that this variable will have the structure of the interface isPerson in the future.
+let anotherPerson: isPerson;
+anotherPerson = {
+	name: 'someNmae',
+	age: 30,
+	speak(msg: string) {
+		console.log(msg);
+	},
+	spend(amount: number) {
+		console.log(`I just spent $${amount}.`);
+		return amount;
+	},
+};
+
+const greetPerson = (person: isPerson) => {
+	console.log(`Hello, ${person.name}`);
+};
+
+// Since the structure of the me variable matches the structure of the isPerson interface (which is the type
+// that this function is expecting), it still works.
+greetPerson(me);

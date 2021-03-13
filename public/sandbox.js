@@ -216,3 +216,35 @@ form.addEventListener('submit', (e) => {
     e.preventDefault();
     console.log(type.value, tofrom.value, details.value, amount.valueAsNumber);
 });
+// Acts like a blueprint for the isPerson type variable.
+// Doesn't have to explicitly say that it is a isPerson, just have to match.
+const me = {
+    name: 'Pilyo',
+    age: 25,
+    speak(msg) {
+        console.log(msg);
+    },
+    spend(amount) {
+        console.log(`I just spent $${amount}.`);
+        return amount;
+    },
+};
+// Saying that this variable will have the structure of the interface isPerson in the future.
+let anotherPerson;
+anotherPerson = {
+    name: 'someNmae',
+    age: 30,
+    speak(msg) {
+        console.log(msg);
+    },
+    spend(amount) {
+        console.log(`I just spent $${amount}.`);
+        return amount;
+    },
+};
+const greetPerson = (person) => {
+    console.log(`Hello, ${person.name}`);
+};
+// Since the structure of the me variable matches the structure of the isPerson interface (which is the type
+// that this function is expecting), it still works.
+greetPerson(me);
