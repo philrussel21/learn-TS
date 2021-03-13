@@ -146,6 +146,24 @@ console.log(char);
 // log2Details = (user: person) => {
 // 	console.log(`${user.name} is ${user.age} years old.`);
 // };
+// CLASSES
+// Creating a class with properties and a constructor.
+var Invoice = /** @class */ (function () {
+    function Invoice(c, d, a) {
+        this.customer = c;
+        this.details = d;
+        this.amount = a;
+    }
+    return Invoice;
+}());
+var inv1 = new Invoice('ryu', 'work on the ryu website', 200);
+var inv2 = new Invoice('ken', 'work on the ken website', 150);
+// Class created can then also be used as type check for arrays, function, etc.
+var invoices = [];
+// invoices.push('nope'); // Will not work
+invoices.push(inv1);
+invoices.push(inv2);
+console.log(inv1, inv2);
 // The DOM
 // If you, as a dev, knows that the element you're trying to target is not gonna be null,
 // put a bang at the end to let TS know that it won't be null and should stop worrying.

@@ -188,6 +188,33 @@ console.log(char);
 // 	console.log(`${user.name} is ${user.age} years old.`);
 // };
 
+// CLASSES
+
+// Creating a class with properties and a constructor.
+class Invoice {
+	// Can also be assigned a starting or default value but in this use case, would be
+	// dependent on instansiation(constructor).
+	customer: string;
+	details: string;
+	amount: number;
+
+	constructor(c: string, d: string, a: number) {
+		this.customer = c;
+		this.details = d;
+		this.amount = a;
+	}
+}
+
+const inv1 = new Invoice('ryu', 'work on the ryu website', 200);
+const inv2 = new Invoice('ken', 'work on the ken website', 150);
+
+// Class created can then also be used as type check for arrays, function, etc.
+const invoices: Invoice[] = [];
+// invoices.push('nope'); // Will not work
+invoices.push(inv1);
+invoices.push(inv2);
+console.log(inv1, inv2);
+
 // The DOM
 
 // If you, as a dev, knows that the element you're trying to target is not gonna be null,
