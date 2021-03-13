@@ -149,11 +149,36 @@ console.log(char);
 // CLASSES
 // Creating a class with properties and a constructor.
 var Invoice = /** @class */ (function () {
-    function Invoice(c, d, a) {
-        this.customer = c;
-        this.details = d;
-        this.amount = a;
+    // ACCESS MODIFIERS
+    // By default all properties are public and can be changed outside this class with something
+    // like instance1.customer = 'some name'.
+    // public customer: string; // would still be public even without the public keyword
+    // readonly details: string; // as the keyword states, can only be read outside this class and cannot be changed.
+    // readonly amount: number;
+    // Would be applied to all instance of the Class on creation, since they're not updated in the constructor.
+    // Private properties can only be used inside this Class and not outside.
+    // private owner: string = 'Myself.';
+    // constructor(c: string, d: string, a: number) {
+    // 	this.customer = c;
+    // 	this.details = d;
+    // 	this.amount = a;
+    // }
+    // SHORTER SYNTAX WITH ACCESS MODIFIERS - would only work if access modif are explicitly stated.
+    // This would instantiate those properties on creation, much like the code above does.
+    function Invoice(customer, details, amount, owner) {
+        if (owner === void 0) { owner = 'Myself'; }
+        this.customer = customer;
+        this.details = details;
+        this.amount = amount;
+        this.owner = owner;
     }
+    // Class Method
+    Invoice.prototype.format = function (num) {
+        if (num === void 0) { num = 1; }
+        for (var i = 0; i < num; i++) {
+            console.log("[" + i + "] " + this.customer + " owes $" + this.amount + " for " + this.details + ". - " + this.owner);
+        }
+    };
     return Invoice;
 }());
 var inv1 = new Invoice('ryu', 'work on the ryu website', 200);
@@ -164,6 +189,7 @@ var invoices = [];
 invoices.push(inv1);
 invoices.push(inv2);
 console.log(inv1, inv2);
+console.log(inv1.format(3));
 // The DOM
 // If you, as a dev, knows that the element you're trying to target is not gonna be null,
 // put a bang at the end to let TS know that it won't be null and should stop worrying.
