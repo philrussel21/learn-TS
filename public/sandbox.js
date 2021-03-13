@@ -1,5 +1,5 @@
 "use strict";
-var char = 'luigi';
+const char = 'luigi';
 console.log(char);
 // tells what type of data this function can only allow
 // const circ = (diameter: number) => {
@@ -148,7 +148,7 @@ console.log(char);
 // };
 // CLASSES
 // Creating a class with properties and a constructor.
-var Invoice = /** @class */ (function () {
+class Invoice {
     // ACCESS MODIFIERS
     // By default all properties are public and can be changed outside this class with something
     // like instance1.customer = 'some name'.
@@ -165,26 +165,23 @@ var Invoice = /** @class */ (function () {
     // }
     // SHORTER SYNTAX WITH ACCESS MODIFIERS - would only work if access modif are explicitly stated.
     // This would instantiate those properties on creation, much like the code above does.
-    function Invoice(customer, details, amount, owner) {
-        if (owner === void 0) { owner = 'Myself'; }
+    constructor(customer, details, amount, owner = 'Myself') {
         this.customer = customer;
         this.details = details;
         this.amount = amount;
         this.owner = owner;
     }
     // Class Method
-    Invoice.prototype.format = function (num) {
-        if (num === void 0) { num = 1; }
-        for (var i = 0; i < num; i++) {
-            console.log("[" + i + "] " + this.customer + " owes $" + this.amount + " for " + this.details + ". - " + this.owner);
+    format(num = 1) {
+        for (let i = 0; i < num; i++) {
+            console.log(`[${i}] ${this.customer} owes $${this.amount} for ${this.details}. - ${this.owner}`);
         }
-    };
-    return Invoice;
-}());
-var inv1 = new Invoice('ryu', 'work on the ryu website', 200);
-var inv2 = new Invoice('ken', 'work on the ken website', 150);
+    }
+}
+const inv1 = new Invoice('ryu', 'work on the ryu website', 200);
+const inv2 = new Invoice('ken', 'work on the ken website', 150);
 // Class created can then also be used as type check for arrays, function, etc.
-var invoices = [];
+const invoices = [];
 // invoices.push('nope'); // Will not work
 invoices.push(inv1);
 invoices.push(inv2);
@@ -193,7 +190,7 @@ console.log(inv1.format(3));
 // The DOM
 // If you, as a dev, knows that the element you're trying to target is not gonna be null,
 // put a bang at the end to let TS know that it won't be null and should stop worrying.
-var anchor = document.querySelector('a');
+const anchor = document.querySelector('a');
 // Alternatively, you can also wrap in if statement if you don't wanna use the !, like so:
 if (anchor) {
     console.log(anchor.href);
@@ -204,16 +201,16 @@ if (anchor) {
 // TYPE CASTING
 // When you have more than one form, you'll probably have to target them by class or id, in this case,
 // TS won't know what kind of HTMLELEMENT it would be so you have to tell it via type casting, like so:
-var form = document.querySelector('.new-item-form');
+const form = document.querySelector('.new-item-form');
 // After successful type casting, the variable would then be of that certain HTMLELEMENT type and
 // its properties and methods would then be available.
 console.log(form.children);
 // More typecasting
-var type = document.querySelector('#type');
-var tofrom = document.querySelector('#tofrom');
-var details = document.querySelector('#details');
-var amount = document.querySelector('#amount');
-form.addEventListener('submit', function (e) {
+const type = document.querySelector('#type');
+const tofrom = document.querySelector('#tofrom');
+const details = document.querySelector('#details');
+const amount = document.querySelector('#amount');
+form.addEventListener('submit', (e) => {
     e.preventDefault();
     console.log(type.value, tofrom.value, details.value, amount.valueAsNumber);
 });
