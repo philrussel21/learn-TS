@@ -1,4 +1,7 @@
-export class Invoice {
+import { HasFormatter } from '../interfaces/HasFormatter';
+
+// Implements the interface and since it follows the interface by having the function, this is valid.
+export class Invoice implements HasFormatter {
 	// ACCESS MODIFIERS
 	// By default all properties are public and can be changed outside this class with something
 	// like instance1.customer = 'some name'.
@@ -31,5 +34,6 @@ export class Invoice {
 				`[${i}] ${this.customer} owes $${this.amount} for ${this.details}. - ${this.owner}`
 			);
 		}
+		return 'Done.';
 	}
 }

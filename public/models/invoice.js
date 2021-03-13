@@ -1,3 +1,4 @@
+// Implements the interface and since it follows the interface by having the function, this is valid.
 export class Invoice {
     // ACCESS MODIFIERS
     // By default all properties are public and can be changed outside this class with something
@@ -26,5 +27,6 @@ export class Invoice {
         for (let i = 0; i < num; i++) {
             console.log(`[${i}] ${this.customer} owes $${this.amount} for ${this.details}. - ${this.owner}`);
         }
+        return 'Done.';
     }
 }

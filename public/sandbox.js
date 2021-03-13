@@ -1,4 +1,5 @@
 import { Invoice } from './models/Invoice.js';
+import { Payment } from './models/Payment.js';
 const char = 'luigi';
 console.log(char);
 // tells what type of data this function can only allow
@@ -248,3 +249,15 @@ const greetPerson = (person) => {
 // Since the structure of the me variable matches the structure of the isPerson interface (which is the type
 // that this function is expecting), it still works.
 greetPerson(me);
+const pay2 = new Payment('chunli', 'self defense lesson', 100);
+// Even though pay3 has to have a type that matches the HasFormatter interface, since Payment class matches it,
+// this is valid. Payment follows the HasFormatter and since pay3 is Payment therefore it also follows HasFormatter
+let pay3;
+pay3 = new Payment('vega', 'annoying villain', 250);
+// Same logic applies here, since Invoice and Payment class follows the  interface, TS knows they're allowed to be inside an
+// array of HasFormatter type/interface.
+const allFormats = [];
+allFormats.push(pay2);
+allFormats.push(pay3);
+allFormats.push(inv1);
+console.log(allFormats);
