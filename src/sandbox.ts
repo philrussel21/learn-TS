@@ -391,29 +391,43 @@
 // ENUMS
 // Special types in TS to let us set constants with words and associate them with numeric value based on their position.
 
-enum ResourceType {
-	BOOK,
-	MOVIE,
-	SERIES,
-	AUDIO,
-}
+// enum ResourceType {
+// 	BOOK,
+// 	MOVIE,
+// 	SERIES,
+// 	AUDIO,
+// }
 
-interface Resource<T> {
-	uid: number;
-	resourceType: ResourceType;
-	document: T;
-}
+// interface Resource<T> {
+// 	uid: number;
+// 	resourceType: ResourceType;
+// 	document: T;
+// }
 
-let docOne: Resource<object> = {
-	uid: 0,
-	resourceType: ResourceType.BOOK, // Would be replaced with numeric value it represents
-	document: { title: 'Atomic Habits' },
-};
+// let docOne: Resource<object> = {
+// 	uid: 0,
+// 	resourceType: ResourceType.BOOK, // Would be replaced with numeric value it represents
+// 	document: { title: 'Atomic Habits' },
+// };
 
-let docTwo: Resource<number[]> = {
-	uid: 1,
-	resourceType: ResourceType.AUDIO, // Would be replaced with numeric value it represents
-	document: [1, 2, 3],
-};
+// let docTwo: Resource<number[]> = {
+// 	uid: 1,
+// 	resourceType: ResourceType.AUDIO, // Would be replaced with numeric value it represents
+// 	document: [1, 2, 3],
+// };
 
-console.log(docOne, docTwo);
+// console.log(docOne, docTwo);
+
+// TUPLES
+// Sort of like arrays except that the type in certain position is fixed.
+
+// Initialization of a tuple, explicitly saying the type it would hold inside the array and its position.
+let tup: [string, number, boolean] = ['ryu', 21, true];
+// tup[0] = false // Invalid since it would only allow string
+tup[0] = 'ken'; // Valid, can change the value as long as the same type
+
+// Array
+// Allowed to change the value and type inside as long as it follows the type it was setup on initialization (any in this case)
+let arr = ['wat', 5, true];
+arr[0] = false;
+arr[1] = 'wer';
