@@ -8,12 +8,7 @@ export class Payment implements HasFormatter {
 		private owner: string = 'Myself again'
 	) {}
 
-	format(num: number = 1) {
-		for (let i = 0; i < num; i++) {
-			console.log(
-				`[${i}] ${this.client} is owed $${this.amount} for ${this.details} - ${this.owner}.`
-			);
-		}
-		return 'Done.';
+	format() {
+		return `${this.client} is owed $${this.amount} for ${this.details} - ${this.owner}.`;
 	}
 }

@@ -189,7 +189,7 @@ const invoices = [];
 invoices.push(inv1);
 invoices.push(inv2);
 console.log(inv1, inv2);
-console.log(inv1.format(3));
+console.log(inv1.format());
 // The DOM
 // If you, as a dev, knows that the element you're trying to target is not gonna be null,
 // put a bang at the end to let TS know that it won't be null and should stop worrying.

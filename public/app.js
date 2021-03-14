@@ -5,6 +5,7 @@ const type = document.querySelector('#type');
 const tofrom = document.querySelector('#tofrom');
 const details = document.querySelector('#details');
 const amount = document.querySelector('#amount');
+const cont = document.querySelector('.item-list');
 // --- PHIL's WAY ---
 // form.addEventListener('submit', (e: Event) => {
 // 	e.preventDefault();

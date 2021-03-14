@@ -28,12 +28,7 @@ export class Invoice implements HasFormatter {
 	) {}
 
 	// Class Method
-	format(num: number = 1) {
-		for (let i = 0; i < num; i++) {
-			console.log(
-				`[${i}] ${this.customer} owes $${this.amount} for ${this.details}. - ${this.owner}`
-			);
-		}
-		return 'Done.';
+	format() {
+		return `${this.customer} owes $${this.amount} for ${this.details}. - ${this.owner}`;
 	}
 }

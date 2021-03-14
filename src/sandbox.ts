@@ -239,7 +239,7 @@ const invoices: Invoice[] = [];
 invoices.push(inv1);
 invoices.push(inv2);
 console.log(inv1, inv2);
-console.log(inv1.format(3));
+console.log(inv1.format());
 
 // The DOM
 
