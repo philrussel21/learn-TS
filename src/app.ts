@@ -56,11 +56,22 @@ form.addEventListener('submit', (e: Event) => {
 
 	let doc: HasFormatter;
 
+	// Creates an array
+	// INVALID - since arrays are a bit loose, it won't know what type each element inside is. When destructured(spread),
+	// it would seem like its type any which is not a function or class usually doesn't take.
+	// let values = [tofrom.value, details.value, amount.valueAsNumber];
+
+	// Creates a tuple
+	// VALID - tuples on the other hand, explicitly says what types are the elements gonna be that's why
+	// destructuring it to a function or class that expects certain types is allowed.
+	let values: [string, string, number];
+	values = [tofrom.value, details.value, amount.valueAsNumber];
+
 	if (type.value === 'invoice') {
-		doc = new Invoice(tofrom.value, details.value, amount.valueAsNumber);
+		doc = new Invoice(...values); // Spread operator: spreads each element inside an iterable one by one.
 		console.log('New Invoice Created: ', doc);
 	} else {
-		doc = new Payment(tofrom.value, details.value, amount.valueAsNumber);
+		doc = new Payment(...values);
 		console.log('New Payment Created: ', doc);
 	}
 
