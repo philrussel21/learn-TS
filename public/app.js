@@ -1,4 +1,5 @@
 import { Invoice } from './models/Invoice.js';
+import { ListTemplate } from './models/ListTemplate.js';
 import { Payment } from './models/Payment.js';
 const form = document.querySelector('.new-item-form');
 const type = document.querySelector('#type');
@@ -53,6 +54,9 @@ form.addEventListener('submit', (e) => {
         doc = new Payment(tofrom.value, details.value, amount.valueAsNumber);
         console.log('New Payment Created: ', doc);
     }
+    // Add the doc to the DOM
+    let list = new ListTemplate(cont);
+    list.render(doc, type.value, 'end');
 });
 // const inv1 = new Invoice('ryu', 'website work', 100);
 // const inv2 = new Invoice('ken', 'mobile app', 300);

@@ -1,5 +1,6 @@
 import { HasFormatter } from './interfaces/HasFormatter';
 import { Invoice } from './models/Invoice.js';
+import { ListTemplate } from './models/ListTemplate.js';
 import { Payment } from './models/Payment.js';
 
 const form = document.querySelector('.new-item-form') as HTMLFormElement;
@@ -7,6 +8,7 @@ const type = document.querySelector('#type') as HTMLSelectElement;
 const tofrom = document.querySelector('#tofrom') as HTMLInputElement;
 const details = document.querySelector('#details') as HTMLInputElement;
 const amount = document.querySelector('#amount') as HTMLInputElement;
+const cont = document.querySelector('.item-list') as HTMLUListElement;
 
 // --- PHIL's WAY ---
 
@@ -61,6 +63,10 @@ form.addEventListener('submit', (e: Event) => {
 		doc = new Payment(tofrom.value, details.value, amount.valueAsNumber);
 		console.log('New Payment Created: ', doc);
 	}
+
+	// Add the doc to the DOM
+	let list = new ListTemplate(cont);
+	list.render(doc, type.value, 'end');
 });
 
 // const inv1 = new Invoice('ryu', 'website work', 100);
