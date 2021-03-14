@@ -279,28 +279,55 @@
 // so when we return it, it knows what properties are in the object.
 // Extends keyword acts like the type check for the T, can be any type (even a class or interface) or any check, like so:
 // const addUID = <T extends {name: string}>(object: T) => {
-const addUID = (object) => {
-    let uid = Math.floor(Math.random() * 100);
-    return Object.assign(Object.assign({}, object), { uid });
-};
-let doc = addUID({ name: 'Ken', age: 30 });
-// addUID('error') // Invalid
-console.log(doc);
-let docOne = {
-    uid: 2,
-    resourceName: 'Invoice',
-    // Since we said T represents an object, the document property would need to be an object
-    document: { name: 'Juan', amount: 45 },
-};
+// const addUID = <T extends object>(object: T) => {
+// 	let uid = Math.floor(Math.random() * 100);
+// 	return { ...object, uid };
+// };
+// let doc = addUID({ name: 'Ken', age: 30 });
+// // addUID('error') // Invalid
+// console.log(doc);
+// GENERICS WITH INTERFACES
+// With interfaces, you define what type T represents, sortof acts like a variable for the type you want it to be.
+// interface Resource<T> {
+// 	uid: number;
+// 	resourceName: string;
+// 	document: T;
+// }
+// let docOne: Resource<object> = {
+// 	uid: 2,
+// 	resourceName: 'Invoice',
+// 	// Since we said T represents an object, the document property would need to be an object
+// 	document: { name: 'Juan', amount: 45 },
+// };
 // In this case, we told it to be a string, hence it would only accept a string.
-let docTwo = {
-    uid: 3,
-    resourceName: 'Payment',
-    document: 'Pesos',
-};
+// let docTwo: Resource<string> = {
+// 	uid: 3,
+// 	resourceName: 'Payment',
+// 	document: 'Pesos',
+// };
 // Can be of any type
-let docThree = {
-    uid: 4,
-    resourceName: 'Lotto Numbers',
-    document: [1, 8, 12, 21, 26],
+// let docThree: Resource<number[]> = {
+// 	uid: 4,
+// 	resourceName: 'Lotto Numbers',
+// 	document: [1, 8, 12, 21, 26],
+// };
+// ENUMS
+// Special types in TS to let us set constants with words and associate them with numeric value based on their position.
+var ResourceType;
+(function (ResourceType) {
+    ResourceType[ResourceType["BOOK"] = 0] = "BOOK";
+    ResourceType[ResourceType["MOVIE"] = 1] = "MOVIE";
+    ResourceType[ResourceType["SERIES"] = 2] = "SERIES";
+    ResourceType[ResourceType["AUDIO"] = 3] = "AUDIO";
+})(ResourceType || (ResourceType = {}));
+let docOne = {
+    uid: 0,
+    resourceType: ResourceType.BOOK,
+    document: { title: 'Atomic Habits' },
 };
+let docTwo = {
+    uid: 1,
+    resourceType: ResourceType.AUDIO,
+    document: [1, 2, 3],
+};
+console.log(docOne, docTwo);

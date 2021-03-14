@@ -350,40 +350,70 @@
 // so when we return it, it knows what properties are in the object.
 // Extends keyword acts like the type check for the T, can be any type (even a class or interface) or any check, like so:
 // const addUID = <T extends {name: string}>(object: T) => {
-const addUID = <T extends object>(object: T) => {
-	let uid = Math.floor(Math.random() * 100);
-	return { ...object, uid };
-};
+// const addUID = <T extends object>(object: T) => {
+// 	let uid = Math.floor(Math.random() * 100);
+// 	return { ...object, uid };
+// };
 
-let doc = addUID({ name: 'Ken', age: 30 });
-// addUID('error') // Invalid
-console.log(doc);
+// let doc = addUID({ name: 'Ken', age: 30 });
+// // addUID('error') // Invalid
+// console.log(doc);
 
 // GENERICS WITH INTERFACES
 // With interfaces, you define what type T represents, sortof acts like a variable for the type you want it to be.
+// interface Resource<T> {
+// 	uid: number;
+// 	resourceName: string;
+// 	document: T;
+// }
+
+// let docOne: Resource<object> = {
+// 	uid: 2,
+// 	resourceName: 'Invoice',
+// 	// Since we said T represents an object, the document property would need to be an object
+// 	document: { name: 'Juan', amount: 45 },
+// };
+
+// In this case, we told it to be a string, hence it would only accept a string.
+// let docTwo: Resource<string> = {
+// 	uid: 3,
+// 	resourceName: 'Payment',
+// 	document: 'Pesos',
+// };
+
+// Can be of any type
+// let docThree: Resource<number[]> = {
+// 	uid: 4,
+// 	resourceName: 'Lotto Numbers',
+// 	document: [1, 8, 12, 21, 26],
+// };
+
+// ENUMS
+// Special types in TS to let us set constants with words and associate them with numeric value based on their position.
+
+enum ResourceType {
+	BOOK,
+	MOVIE,
+	SERIES,
+	AUDIO,
+}
+
 interface Resource<T> {
 	uid: number;
-	resourceName: string;
+	resourceType: ResourceType;
 	document: T;
 }
 
 let docOne: Resource<object> = {
-	uid: 2,
-	resourceName: 'Invoice',
-	// Since we said T represents an object, the document property would need to be an object
-	document: { name: 'Juan', amount: 45 },
+	uid: 0,
+	resourceType: ResourceType.BOOK, // Would be replaced with numeric value it represents
+	document: { title: 'Atomic Habits' },
 };
 
-// In this case, we told it to be a string, hence it would only accept a string.
-let docTwo: Resource<string> = {
-	uid: 3,
-	resourceName: 'Payment',
-	document: 'Pesos',
+let docTwo: Resource<number[]> = {
+	uid: 1,
+	resourceType: ResourceType.AUDIO, // Would be replaced with numeric value it represents
+	document: [1, 2, 3],
 };
 
-// Can be of any type
-let docThree: Resource<number[]> = {
-	uid: 4,
-	resourceName: 'Lotto Numbers',
-	document: [1, 8, 12, 21, 26],
-};
+console.log(docOne, docTwo);
