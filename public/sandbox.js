@@ -1,7 +1,9 @@
-import { Invoice } from './models/Invoice.js';
-import { Payment } from './models/Payment.js';
-const char = 'luigi';
-console.log(char);
+"use strict";
+// import { HasFormatter } from './interfaces/HasFormatter.js';
+// import { Invoice } from './models/Invoice.js';
+// import { Payment } from './models/Payment.js';
+// const char = 'luigi';
+// console.log(char);
 // tells what type of data this function can only allow
 // const circ = (diameter: number) => {
 // 	return diameter * Math.PI;
@@ -181,83 +183,124 @@ console.log(char);
 // 		}
 // 	}
 // }
-const inv1 = new Invoice('ryu', 'work on the ryu website', 200);
-const inv2 = new Invoice('ken', 'work on the ken website', 150);
+// const inv1 = new Invoice('ryu', 'work on the ryu website', 200);
+// const inv2 = new Invoice('ken', 'work on the ken website', 150);
 // Class created can then also be used as type check for arrays, function, etc.
-const invoices = [];
+// const invoices: Invoice[] = [];
 // invoices.push('nope'); // Will not work
-invoices.push(inv1);
-invoices.push(inv2);
-console.log(inv1, inv2);
-console.log(inv1.format());
+// invoices.push(inv1);
+// invoices.push(inv2);
+// console.log(inv1, inv2);
+// console.log(inv1.format());
 // The DOM
 // If you, as a dev, knows that the element you're trying to target is not gonna be null,
 // put a bang at the end to let TS know that it won't be null and should stop worrying.
-const anchor = document.querySelector('a');
+// const anchor = document.querySelector('a')!;
 // Alternatively, you can also wrap in if statement if you don't wanna use the !, like so:
-if (anchor) {
-    console.log(anchor.href);
-}
+// if (anchor) {
+// 	console.log(anchor.href);
+// }
 // Also, if you hover over the variable, TS would know what kind it is and assign a special type
 // that comes with different properties and methods that you can use.
 // const form = document.querySelector('form')!;
 // TYPE CASTING
 // When you have more than one form, you'll probably have to target them by class or id, in this case,
 // TS won't know what kind of HTMLELEMENT it would be so you have to tell it via type casting, like so:
-const form = document.querySelector('.new-item-form');
+// const form = document.querySelector('.new-item-form') as HTMLFormElement;
 // After successful type casting, the variable would then be of that certain HTMLELEMENT type and
 // its properties and methods would then be available.
-console.log(form.children);
+// console.log(form.children);
 // More typecasting
-const type = document.querySelector('#type');
-const tofrom = document.querySelector('#tofrom');
-const details = document.querySelector('#details');
-const amount = document.querySelector('#amount');
-form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    console.log(type.value, tofrom.value, details.value, amount.valueAsNumber);
-});
+// const type = document.querySelector('#type') as HTMLSelectElement;
+// const tofrom = document.querySelector('#tofrom') as HTMLInputElement;
+// const details = document.querySelector('#details') as HTMLInputElement;
+// const amount = document.querySelector('#amount') as HTMLInputElement;
+// form.addEventListener('submit', (e: Event) => {
+// 	e.preventDefault();
+// 	console.log(type.value, tofrom.value, details.value, amount.valueAsNumber);
+// });
+// INTERFACES
+// - Enforces the certain structure for objects and classes. May look like creating a new Class but is not
+// the same since it will not create a new object (instance) but will also act like a blueprint when a
+// variable declares itself as the interface's type.
+// interface isPerson {
+// 	name: string;
+// 	age: number;
+// 	speak(param: string): void; // Method should return void
+// 	spend(param: number): number; // Method should return number
+// }
 // Acts like a blueprint for the isPerson type variable.
 // Doesn't have to explicitly say that it is a isPerson, just have to match.
-const me = {
-    name: 'Pilyo',
-    age: 25,
-    speak(msg) {
-        console.log(msg);
-    },
-    spend(amount) {
-        console.log(`I just spent $${amount}.`);
-        return amount;
-    },
-};
+// const me = {
+// 	name: 'Pilyo',
+// 	age: 25,
+// 	speak(msg: string) {
+// 		console.log(msg);
+// 	},
+// 	spend(amount: number) {
+// 		console.log(`I just spent $${amount}.`);
+// 		return amount;
+// 	},
+// };
 // Saying that this variable will have the structure of the interface isPerson in the future.
-let anotherPerson;
-anotherPerson = {
-    name: 'someNmae',
-    age: 30,
-    speak(msg) {
-        console.log(msg);
-    },
-    spend(amount) {
-        console.log(`I just spent $${amount}.`);
-        return amount;
-    },
-};
-const greetPerson = (person) => {
-    console.log(`Hello, ${person.name}`);
-};
+// let anotherPerson: isPerson;
+// anotherPerson = {
+// 	name: 'someNmae',
+// 	age: 30,
+// 	speak(msg: string) {
+// 		console.log(msg);
+// 	},
+// 	spend(amount: number) {
+// 		console.log(`I just spent $${amount}.`);
+// 		return amount;
+// 	},
+// };
+// const greetPerson = (person: isPerson) => {
+// 	console.log(`Hello, ${person.name}`);
+// };
 // Since the structure of the me variable matches the structure of the isPerson interface (which is the type
 // that this function is expecting), it still works.
-greetPerson(me);
-const pay2 = new Payment('chunli', 'self defense lesson', 100);
+// greetPerson(me);
+// const pay2 = new Payment('chunli', 'self defense lesson', 100);
 // Even though pay3 has to have a type that matches the HasFormatter interface, since Payment class matches it,
 // this is valid. Payment follows the HasFormatter and since pay3 is Payment therefore it also follows HasFormatter
-let pay3;
-pay3 = new Payment('vega', 'annoying villain', 250);
+// let pay3: HasFormatter;
+// pay3 = new Payment('vega', 'annoying villain', 250);
 // Same logic applies here, since Invoice and Payment class follows the  interface, TS knows they're allowed to be inside an
 // array of HasFormatter type/interface.
-const allFormats = [];
-allFormats.push(pay2);
-allFormats.push(pay3);
-allFormats.push(inv1);
-console.log(allFormats);
+// const allFormats: HasFormatter[] = [];
+// allFormats.push(pay2);
+// allFormats.push(pay3);
+// allFormats.push(inv1);
+// console.log(allFormats);
+// GENERICS
+// - Allows reusable blocks of code to be used with different types.
+// T captures whatever we put in the argument (properties in this instance since we passed an object)
+// so when we return it, it knows what properties are in the object.
+// Extends keyword acts like the type check for the T, can be any type (even a class or interface) or any check, like so:
+// const addUID = <T extends {name: string}>(object: T) => {
+const addUID = (object) => {
+    let uid = Math.floor(Math.random() * 100);
+    return Object.assign(Object.assign({}, object), { uid });
+};
+let doc = addUID({ name: 'Ken', age: 30 });
+// addUID('error') // Invalid
+console.log(doc);
+let docOne = {
+    uid: 2,
+    resourceName: 'Invoice',
+    // Since we said T represents an object, the document property would need to be an object
+    document: { name: 'Juan', amount: 45 },
+};
+// In this case, we told it to be a string, hence it would only accept a string.
+let docTwo = {
+    uid: 3,
+    resourceName: 'Payment',
+    document: 'Pesos',
+};
+// Can be of any type
+let docThree = {
+    uid: 4,
+    resourceName: 'Lotto Numbers',
+    document: [1, 8, 12, 21, 26],
+};
